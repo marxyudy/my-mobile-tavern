@@ -1,7 +1,6 @@
-FROM node:18-slim
-RUN apt-get update && apt-get install -y git
-RUN git clone https://github.com /app
+FROM node:18-alpine
 WORKDIR /app
-RUN npm install --only=prod
+RUN npx degit SillyTavern/SillyTavern#main .
+RUN npm install --omit=dev
 EXPOSE 8000
 CMD ["node", "server.js", "--listen"]
